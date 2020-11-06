@@ -57,8 +57,8 @@ public class Song {
 		String msg= "**************  Song **************"+"/n"+
 				"**  Title: "+getTitle()+"/n"+
 				"**  Artist: "+getNameArtist()+"/n"+
-				"**  Duration: "+getDate()+"/n"+
-				"**  Genre: " getDuationSong()+"/n"+
+				"**  Duration: "+getDuationSong()+"/n"+
+				"**  Genre: " getGenre()+"/n"+
 				"***********************************"+"/n";
 		return msg;
 	}

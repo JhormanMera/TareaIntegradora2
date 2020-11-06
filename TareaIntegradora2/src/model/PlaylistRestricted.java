@@ -2,11 +2,11 @@ package model;
 
 public class PlaylistRestricted extends Playlist{
 	private final static int USERS_ALLOWED = 5;
-	private String[] usersAllowed;
-	public PlaylistRestricted(String playlistName,String usersAllowed) {
+	private User[] usersAllowed;
+	public PlaylistRestricted(String name, String password, int age, String playlistName) {
         super(playlistName);
-        this.usersAllowed = new String [USERS_ALLOWED];
-		this.usersAllowed[0]=usersAllowed
+        this.usersAllowed = new User [USERS_ALLOWED];
+		this.usersAllowed[0]=new User(name, password, age);
     }
 	public String showUsers(){
 		String msg="Usuarios Permitidos:"+"/n";
