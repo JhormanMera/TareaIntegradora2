@@ -12,9 +12,9 @@ public class MSC {
         playlist = new Playlist[PLAYLISTS];
         poolSong = new Song[MAXIUMSHARES];
         user = new User[MAXIUMUSERS];
-    /**
+	}
 	// Add Private Playlist***********************
-	public String addPlaylist (String playlistName, String uniqueUser) {
+	public String addPlaylist (String playlistName,String name, String password, int age) {
 		String msg = "La Playlist fue creada exitosamente";
 		boolean added = false;
 		PlaylistPrivate newPlaylist = new PlaylistPrivate(playlistName, uniqueUser);
@@ -46,10 +46,10 @@ public class MSC {
 		return msg;
 	}
 	// Add Restricted Playlist***********************
-	public String addPlaylist (String playlistName) {
+	public String addPlaylist (String name, String password, int age, String playlistName) {
 		String msg = "La Playlist fue creada exitosamente";
 		boolean added = false;
-		PlaylistPublic newPlaylist = new PlaylistPublic(playlistName);
+		PlaylistRestricted newPlaylist = new PlaylistRestricted(name, password, age, playlistName);
 			for(int i=0; i<PLAYLISTS && !added; i++) {
 				if(playlist[i] == null){
 					playlist[i] = newPlaylist;
@@ -61,7 +61,7 @@ public class MSC {
 			}
 		return msg;
 	}
-	*/
+	
 
     public String addUser(String name, String password, int age) {
         boolean added = false;
@@ -138,7 +138,7 @@ public class MSC {
 				msg += playlist[i].showContent();
 			}
 		}
-		return msg;
+		return msgPl;
 	}
 
 }

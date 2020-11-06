@@ -1,14 +1,14 @@
 package model;
 public class PlaylistPrivate extends Playlist{
-    private String uniqueUser;
-	public PlaylistPrivate(String playlistName, String uniqueUser){
+    private User uniqueUser;
+	public PlaylistPrivate(String playlistName,String name, String password, int age){
         super(playlistName);
-        this.uniqueUser =uniqueUser;
+        this.uniqueUser =new User(name, password, age);
     }
-	public String getUniqueUser(){
+	public User getUniqueUser(){
 		return this.uniqueUser;
 	}
-    public void setUniqueUser(String uniqueUser){
+    public void setUniqueUser(User uniqueUser){
 		this.uniqueUser= uniqueUser;
 	}
 	@Override
