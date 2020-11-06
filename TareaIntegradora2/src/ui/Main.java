@@ -9,5 +9,5 @@ public class Main {
 		Menu m;
 		m=new Menu();
 		m.startProgram();
-}
+	}
 }

@@ -1,12 +1,19 @@
 package model;
 
 public abstract class Playlist {
+		private final static int AMOUNT_GENRES=7;
+		private final static int AMOUNT_SONGS=30;
+		private final MusicalGender[] genres =MusicalGender.values();
         private String name;
         private String duration;
-        private String genreSet;
+		private int durationTotal;
+        private String[] genreSet;
+		private Song[] songs;
     
         public Playlist(String name){
-        this.genreSet="";
+        this.genreSet=new String[AMOUNT_GENRES];
+		this.songs= new Song[AMOUNT_SONGS];
+		genreSet[0]=genres[0].name();
         this.duration="00:00";
         this.name= name;
         }
@@ -19,21 +26,44 @@ public abstract class Playlist {
         public String getDuration(){
             return duration;
         }
-        public void setDuration(String duration){
-            this.duration= duration;
+		public int updateDurationTotal(int songDuration){
+			this.durationTotal+=songDuration;
+		}
+		public String updateGenre(){
+			String updated="El genero de la Playlist no ha sido cambiado";
+			boolean found=false;
+			for(int i=0;i<AMOUNT_SONGS && !found; i++){
+				if(songs[i] != null && genreSet[i] != null){
+					found=songs[i].equalsIgnoreCase(genreSet[i]);
+					if(found==false){
+						genreSet[i]=songs[i].getGenre();
+						updated="El genero de la Playlist ha cambiado"
+					}
+				}
+			}
+			return updated;
+		}
+        public void setDuration(){
+			int hour=(int)durationTotal/3600;
+			int minute=(int)(durationTotal-(3600*hour))/60;
+			int seconds=(int)durationTotal-(hour*3600)+(minute*60));
+			if(minute<10){
+				this.duration="0"+hour+":"+"0"+minute+":"+seconds;
+			}
+			else{
+				this.duration="0"+hour+":"+minute+":"+seconds;
+			}
         }
-        public String getGenreSet(){
-            return genreSet;
-        }
-        public void setGenreSet(String genreSet){
-            this.genreSet= genreSet;
-        }
+		public String showGenre(){
+		String msg="";
+		for(int i=0;i<AMOUNT_GENRES;i++){
+			if(genreSet[i] != null){
+				msg += genreSet[i]+", ";
+			}
+		}
+		return msg;
+		}
 		@Override
-		public String showContent(){
-			String msg=" **************  Playlist **************/n"+
-						"**  Title: "+name+"/n"+
-						"**  Duration: "+ duration+"/n"+
-						"**  Genre: "+genreSet+"/n";
-			return msg;
+		public abstract String showContent();
 		}						
     }

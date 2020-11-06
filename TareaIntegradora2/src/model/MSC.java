@@ -12,7 +12,7 @@ public class MSC {
         playlist = new Playlist[PLAYLISTS];
         poolSong = new Song[MAXIUMSHARES];
         user = new User[MAXIUMUSERS];
-    }
+    /**
 	// Add Private Playlist***********************
 	public String addPlaylist (String playlistName, String uniqueUser) {
 		String msg = "La Playlist fue creada exitosamente";
@@ -61,6 +61,7 @@ public class MSC {
 			}
 		return msg;
 	}
+	*/
 
     public String addUser(String name, String password, int age) {
         boolean added = false;
@@ -93,10 +94,10 @@ public class MSC {
 		}
 		return message;
 	}
-    public boolean findUser(String name, String password) {
+    public boolean findUser(String name) {
         boolean exist = false;
         for (int i = 0; i < MAXIUMUSERS; i++) {
-            if (user[i].getName() == name && user[i].getPassword() == password) {
+            if (user[i].getName().equalsIgnorecase(name)) {
                 exist = true;
             }
         }
@@ -111,11 +112,33 @@ public class MSC {
         }
         return exist;
     }
-
-
-
-
-
-
+	public String showUsers(){
+		String msg="USUARIOS"+"/n";
+		for(int i=0;i<MAXIUMUSERS;i++){
+			if(user[i] != null){
+				msg += user[i].showContent();
+			}
+		}
+		return msg;
+	}
+	public String showSongs(){
+		String msgSong= "CANCIONES: "+"/n";
+		for(int i=0;i<MAXIUMSHARES;i++){
+			if(poolSong[i] != null){
+				msg += poolSong[i].showContent();
+			}
+		}
+		return msg;
+		
+	}
+	public String showPlaylists(){
+		String msgPl="PLAYLISTS: "+"/n";
+				for(int i=0;i<PLAYLISTS;i++){
+			if(playlist[i] != null){
+				msg += playlist[i].showContent();
+			}
+		}
+		return msg;
+	}
 
 }
