@@ -1,5 +1,4 @@
 package model;
-
 public abstract class Playlist {
 		private final static int AMOUNT_GENRES=7;
 		private final static int AMOUNT_SONGS=30;
@@ -55,15 +54,13 @@ public abstract class Playlist {
 			}
         }
 		public String showGenre(){
-		String msg="";
-		for(int i=0;i<AMOUNT_GENRES;i++){
-			if(genreSet[i] != null){
-				msg += genreSet[i]+", ";
+			String msg="";
+			for(int i=0;i<AMOUNT_GENRES;i++){
+				if(genreSet[i] != null){
+					msg += genreSet[i]+", ";
+				}
 			}
+			return msg;
 		}
-		return msg;
-		}
-		@Override
 		public abstract String showContent();
-		}						
-    }
+	}
